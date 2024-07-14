@@ -6,3 +6,11 @@ Y   *---*---*---*
 1   |   |   |   |
 |   *---*---*---*
 0-----1---2---3-X
+
+
+
+i = x axis
+j = y axis
+
+position = (3 * (j- 1) + (i-1))
+it = vec.begin() + position
