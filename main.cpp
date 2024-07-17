@@ -1,52 +1,70 @@
 #include <iostream>
-#include <vector>
 using namespace std;
-void printer(vector<string>& vec) ;
+void printer(string s[3][3]) ;
 int main() {
-    cout << "Welcome to my tic tac toe game " << endl ;
-    cout << "This game is made without using any copilot" << endl << endl;
-    string opt , comp; // define important elements
-    vector<string> vec;
-    while (true) {
-    cout << "Enter what you would like to choose ?? " << endl << "\t1. X \n\t2. O" << endl;
-    cout << "Type 1 or 2 " << endl;
-    cin >> opt ;
-        if ( opt == "1" ) {
-            comp = "O";
-            opt = "X" ;
-            break;
-        }else if ( opt == "2" ) {
-            comp = "X";
-            opt = "O";
-            break;
-        } else {
-            cout << "The value is incorrect" << endl;
-            cout << "please re-enter " << endl;
-        }
+    // starting
+    string s[3][3] = {
+        { " " , " "  , " " } ,
+        { " " , " "  , " " } ,
+        { " " , " "  , " " }
+    };
+    cout << "Welcome to CLI tic tac toe game " << endl ;
+    cout << "For playing this game you need some knoledge of coordinate geometry " << endl ;
+    cout << "please select your sign : " << endl;
+    cout << "1. O" << endl ;
+    cout << "2. X" << endl ;
+    cout << "Choose [1\\2] : " ;
+    int a ;
+    cin >> a ;
+    string pl , comp;
+    if (a == 1 ) {
+        pl = "O";
+        comp = "X";
+    } else if ( a ==2 ) {
+        pl = "X";
+        comp = "O";
+    }else  { /// just a small check
+        cout << "Invalide values , terminating..." << endl ;
+        return 0 ;
     }
-    printer(vec) ;
+
+
+    // main process
+    printer(s) ;
     while (true) {
-        cout << "Enter position x axis : " ;
-        int i ;
-        cin >> i ;
-        cout << "Enter position y axis : " ;
-        int j;
-        cin >> j ;
-        int pos = (3 * (j- 1) + (i-1)) ; // for position
-        vector<string>::iterator itr = (vec.begin() + pos) ;
-        *itr = "X";
+        cout << "Choose the coordinates"  << endl;
+        cout << "x : "  ;
+        int x ;
+        cin >> x ;
+        cout << "y : "  ;
+        int y ;
+        cin >> y ;
+        if ( x > 3 || y > 3 || x < 0 || y < 0  ) {
+            cout << "Invalid values " << endl;
+            continue;
+        } else if ( s[y-1][x-1] != " ") {
+            cout << "The the location provided is already in use " << endl;
+            continue;
+        } else {
+            cout << "Computer's turn " << endl;
+        }
+        s[y-1][x-1] = pl ;
+        printer(s) ;
+
         break;
     }
 }
-void printer(const vector<string> & vec) {
+void printer(string s[3][3]) {
     cout << endl << endl ;
     string blank = " ";
+    cout << s[1][1] << endl;
     cout << "Y   *---*---*---*" << endl;
-    cout << "3   | "<< blank << " | "<< blank << " | "<< blank << blank << "|" << endl;
+    cout << "3   | "<< s[2][0] << " | "<< s[2][1] << " | "<< s[2][2] << " |" << endl;
     cout << "|   *---*---*---*" << endl ;
-    cout << "2   | "<< blank << " | "<< blank << " | "<< blank << blank << "|" << endl;
+    cout << "2   | "<< s[1][0] << " | "<< s[1][1] << " | "<< s[1][2] << " |" << endl;
     cout << "|   *---*---*---*" << endl ;
-    cout << "1   | "<< *vec.begin() << " | "<< *(vec.begin()+1) << " | "<< *(vec.begin() +2)  << " |" << endl;
+    cout << "1   | "<< s[0][0] << " | "<< s[0][1] << " | "<< s[0][2]  << " |" << endl;
     cout << "|   *---*---*---*" << endl ;
     cout << "0-----1---2---3-X" << endl ;
+    cout << endl << endl;
 }

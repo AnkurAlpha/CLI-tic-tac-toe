@@ -9,8 +9,4 @@ Y   *---*---*---*
 
 
 
-i = x axis
-j = y axis
-
-position = (3 * (j- 1) + (i-1))
-it = vec.begin() + position
+s[y][x]
