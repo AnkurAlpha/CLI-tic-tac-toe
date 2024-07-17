@@ -1,6 +1,9 @@
 #include <iostream>
 using namespace std;
 void printer(string s[3][3]) ;
+void comp_move(string s[3][3], string comp) ;
+void cheker(string s[3][3]) ;
+
 int main() {
     // starting
     string s[3][3] = {
@@ -49,10 +52,11 @@ int main() {
             cout << "Computer's turn " << endl;
         }
         s[y-1][x-1] = pl ;
+        comp_move(s,comp);
         printer(s) ;
-
         break;
     }
+    cout << rand() % 100 ;
 }
 void printer(string s[3][3]) {
     cout << endl << endl ;
@@ -67,4 +71,21 @@ void printer(string s[3][3]) {
     cout << "|   *---*---*---*" << endl ;
     cout << "0-----1---2---3-X" << endl ;
     cout << endl << endl;
+}
+void comp_move(string s[3][3], string comp) {
+    while (true) {
+        srand(time(0)) ; // to generate random number everytime
+        int x = rand() % 4 ;
+        srand(time(0)) ; // to generate random number everytime
+        int y = rand() % 4 ;
+        if (s[y][x] == " " ) {
+            s[y][x] = comp ;
+            break;
+        }
+    }
+}
+
+// next thing is write checker
+void cheker(string s[3][3]) {
+    // horizontal check
 }
