@@ -3,6 +3,11 @@ This is just an experiment ground
 where basically I will do anything and experiment with this repo a lot,
 as much as I can .
 
+## Current state :
+This is how it looks ATM
+[screenshot1](assets/1.png)
+[screenshot2](assets/2.png)
+
 ## To do's :
     - learn how to use cmake and implement it here
 
@@ -14,3 +19,5 @@ Any thing that you want to recommend , like :
     - a better way to implement something
     - or any other thing
 
+#### License
+[MIT](LICENSE)
