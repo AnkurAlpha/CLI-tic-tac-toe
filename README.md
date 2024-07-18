@@ -5,8 +5,8 @@ as much as I can .
 
 ## Current state :
 This is how it looks ATM
-[screenshot1](assets/1.png)
-[screenshot2](assets/2.png)
+![screenshot1](assets/1.png)
+![screenshot2](assets/2.png)
 
 ## To do's :
     - learn how to use cmake and implement it here
