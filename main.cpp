@@ -2,7 +2,7 @@
 using namespace std;
 void printer(string s[3][3]) ;
 void comp_move(string s[3][3], string comp) ;
-void cheker(string s[3][3]) ;
+void cheker(string s[3][3],string &cond) ;
 
 int main() {
     // starting
@@ -20,6 +20,7 @@ int main() {
     int a ;
     cin >> a ;
     string pl , comp;
+    string win = " ";
     if (a == 1 ) {
         pl = "O";
         comp = "X";
@@ -48,13 +49,46 @@ int main() {
         } else if ( s[y-1][x-1] != " ") {
             cout << "The the location provided is already in use " << endl;
             continue;
-        } else {
-            cout << "Computer's turn " << endl;
         }
         s[y-1][x-1] = pl ;
+        printer(s) ;
+        cheker(s,win);
+        if ( win == " " ) {
+            cout << "computer's move " << endl;
+        } else if ( win == "Tie") {
+            cout << "All places are filled, match is a tie!!"  << endl;
+            printer(s) ;
+            return 0 ;
+        } else if ( win == "X" || win == "O") {
+            if ( win == pl ) {
+                cout << "You won !!" ;
+                return 0 ;
+            } else {
+                cout << "Computer won!!";
+                return 0 ;
+            }
+        }
+
+
         comp_move(s,comp);
         printer(s) ;
-        break;
+        cheker(s,win);
+        // was't sure if this can be put into a function or not
+        if ( win == " " ) {
+            cout << "your move " << endl;
+        } else if ( win == "Tie") {
+            cout << "All places are filled, match is a tie!!"  << endl;
+            printer(s) ;
+            return 0 ;
+        } else if ( win == "X" || win == "O") {
+            if ( win == pl ) {
+                cout << "You won !!" ;
+                return 0;
+            } else {
+                cout << "Computer won!!";
+                return 0;
+            }
+        }
     }
     cout << rand() % 100 ;
 }
@@ -84,8 +118,61 @@ void comp_move(string s[3][3], string comp) {
         }
     }
 }
-
 // next thing is write checker
-void cheker(string s[3][3]) {
+void cheker(string s[3][3],string &cond) {
     // horizontal check
+    if (s[0][0] == "O" && s[0][1] == "O" && s[0][2] == "O"  ) {
+        cond = "O";
+    } else if (s[1][0] == "O" && s[1][1] == "O" && s[1][2] == "O"  ) {
+        cond = "O" ;
+    } else if (s[2][0] == "O" && s[2][1] == "O" && s[2][2] == "O"  ) {
+        cond = "O";
+        // vertical check
+    } else if (s[0][0] == "O" && s[1][0] == "O" && s[2][0] == "O"  ) {
+        cond = "O";
+    } else if (s[0][1] == "O" && s[1][1] == "O" && s[2][1] == "O"  ) {
+        cond = "O";
+    } else if (s[0][2] == "O" && s[1][2] == "O" && s[2][2] == "O"  ) {
+        cond = "O";
+        // diagonal check
+    } else if (s[0][0] == "O" && s[1][1] == "O" && s[2][2] == "O"  ) {
+        cond = "O";
+    } else if (s[2][0] == "O" && s[1][1] == "O" && s[0][2] == "O"  ) {
+        cond = "O";
+
+
+
+        // check for x
+    }else if (s[0][0] == "X" && s[0][1] == "X" && s[0][2] == "X"  ) {
+        cond = "X";
+    } else if (s[1][0] == "X" && s[1][1] == "X" && s[1][2] == "X"  ) {
+        cond = "X" ;
+    } else if (s[2][0] == "X" && s[2][1] == "X" && s[2][2] == "X"  ) {
+        cond = "X";
+        // vertical check
+    } else if (s[0][0] == "X" && s[1][0] == "X" && s[2][0] == "X"  ) {
+        cond = "X";
+    } else if (s[0][1] == "X" && s[1][1] == "X" && s[2][1] == "X"  ) {
+        cond = "X";
+    } else if (s[0][2] == "X" && s[1][2] == "X" && s[2][2] == "X"  ) {
+        cond = "X";
+        // diagonal check
+    } else if (s[0][0] == "X" && s[1][1] == "X" && s[2][2] == "X"  ) {
+        cond = "X";
+    } else if (s[2][0] == "X" && s[1][1] == "X" && s[0][2] == "X"  ) {
+        cond = "X";
+    } else {
+        cond = " " ;
+    }
+    bool fil = true ;
+    for (int i = 0 ; i < 3 ; ++i ) {
+        for (int j = 0 ; j < 3 ; ++j) {
+            if ( s[i][j] == " ") {
+                fil = false ;
+            }
+        }
+    }
+    if (fil == true  && cond == " ") {
+        cond = "Tie" ;
+    }
 }
