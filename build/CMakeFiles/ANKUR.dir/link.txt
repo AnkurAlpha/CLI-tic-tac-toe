@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/ANKUR.dir/main.cpp.o -o ANKUR
